@@ -79,7 +79,7 @@ else:
         top_embedding = np.array(results['embeddings'][0][0])
         similarity = cosine_similarity([question_vector], [top_embedding])[0][0]
 
-        threshold = 0.80  # benzerlik eşiği
+        threshold = 0.75  # benzerlik eşiği
         if similarity >= threshold:
             print(f"Cevap bulundu (Benzerlik: {similarity:.2f}):")
             print(results['documents'][0][0])

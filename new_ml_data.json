@@ -7,6 +7,10 @@
         {
             "question": "pytorch nedir",
             "answer": "Bu soruya verilecek örnek bir API cevabıdır."
+        },
+        {
+            "question": "makine öğrenmesi",
+            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
         }
     ]
 }
