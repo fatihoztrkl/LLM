@@ -1,5 +1,4 @@
 import json
-
 # Makine öğrenmesi ile ilgili anahtar kelimeler listesi
 ml_keywords = [
     "makine öğrenmesi", "machine learning", "yapay zeka", "artificial intelligence", "ai", "ml", "veri", "data",
@@ -16,7 +15,7 @@ ml_keywords = [
     "pca", "normalizasyon", "ölçekleme", "standardizasyon", "grid search", "cross validation", "hyperparameter tuning",
     "sklearn", "scikit-learn", "tensorflow", "keras", "pytorch", "huggingface", "mlflow", "onnx",
     "bias", "variance", "overfitting", "underfitting", "generalization", "embedding", "feature importance",
-    "explainability", "shap", "lime", "model yorumlanabilirliği"
+    "explainability", "shap", "lime", "model yorumlanabilirliği","id3"
 ]
 
 # JSON dosyasına kaydetme

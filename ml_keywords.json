@@ -102,5 +102,6 @@
     "explainability",
     "shap",
     "lime",
-    "model yorumlanabilirliği"
+    "model yorumlanabilirliği",
+    "id3"
 ]

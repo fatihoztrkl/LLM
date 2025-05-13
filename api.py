@@ -6,6 +6,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import os
+import logging
 
 # FastAPI uygulaması
 app = FastAPI()
@@ -51,9 +52,26 @@ def is_ml_related(question):
 class QuestionRequest(BaseModel):
     question: str
 
+# Save to new file fonksiyonu
+def save_to_new_file(question, answer, filename="new_ml_data.json"):
+    new_entry = {"question": question, "answer": answer}
+    if os.path.exists(filename):
+        with open(filename, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    else:
+        data = {"data": []}
+    data["data"].append(new_entry)
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+    print(f"\n[Soru ve cevap '{filename}' dosyasına kaydedildi.]")
+
+# Loglama ayarları
+logging.basicConfig(level=logging.DEBUG)
+
 @app.post("/ask/")
 async def ask_question(request: QuestionRequest):
     user_question = request.question
+    logging.debug(f"User question: {user_question}")
     
     # 1. Makine öğrenmesiyle ilgili mi?
     if not is_ml_related(user_question):
@@ -78,14 +96,10 @@ async def ask_question(request: QuestionRequest):
         if similarity >= threshold:
             return {"answer": results['documents'][0][0], "similarity": similarity}
         else:
-            # Benzerlik düşükse, API'ye yönlendiriliyor
             dummy_api_response = "Bu soruya verilecek örnek bir API cevabıdır."
             save_to_new_file(user_question, dummy_api_response)  # Yeni veriyi kaydedelim
             return {"message": f"Benzerlik çok düşük ({similarity:.2f}). API'ye yönlendiriliyor..."}
     else:
-        # Veritabanında cevap yoksa, API'ye yönlendiriliyor
         dummy_api_response = "Bu soruya verilecek örnek bir API cevabıdır."
         save_to_new_file(user_question, dummy_api_response)  # Yeni veriyi kaydedelim
         return {"message": "Veritabanında benzer bir cevap bulunamadı. API'ye yönlendiriliyor..."}
-
-
