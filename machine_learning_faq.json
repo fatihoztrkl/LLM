@@ -1,0 +1,212 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "question": "Makine öğrenmesi nedir?",
+            "answer": "Makine öğrenmesi, verilerden öğrenerek tahmin veya kararlar veren algoritmalar bütünüdür.",
+            "keywords": [
+                "makine öğrenmesi",
+                "öğrenme",
+                "algoritma"
+            ]
+        },
+        {
+            "id": 2,
+            "question": "Denetimli öğrenme nedir?",
+            "answer": "Denetimli öğrenme, giriş ve etiketli çıkış verileriyle modelin eğitildiği bir öğrenme yöntemidir.",
+            "keywords": [
+                "denetimli",
+                "etiketli veri",
+                "giriş çıkış",
+                "öğrenme"
+            ]
+        },
+        {
+            "id": 3,
+            "question": "Denetimsiz öğrenme nedir?",
+            "answer": "Denetimsiz öğrenme, etiketli veri olmadan verilerdeki yapının keşfedildiği yöntemdir.",
+            "keywords": [
+                "denetimsiz",
+                "etiketsiz",
+                "kümeleme"
+            ]
+        },
+        {
+            "id": 4,
+            "question": "Regresyon problemi nedir?",
+            "answer": "Regresyon, sürekli bir çıktıyı tahmin etme problemidir.",
+            "keywords": [
+                "regresyon",
+                "sürekli",
+                "tahmin"
+            ]
+        },
+        {
+            "id": 5,
+            "question": "Sınıflandırma problemi nedir?",
+            "answer": "Sınıflandırma, verileri kategorilere ayırmayı amaçlayan bir makine öğrenmesi problemidir.",
+            "keywords": [
+                "sınıflandırma",
+                "kategoriler",
+                "etiket"
+            ]
+        },
+        {
+            "id": 6,
+            "question": "Overfitting nedir?",
+            "answer": "Overfitting, modelin eğitim verisine fazla uyum sağlaması ve genelleme yetisinin düşmesidir.",
+            "keywords": [
+                "overfitting",
+                "aşırı öğrenme",
+                "ezberleme",
+                "genelleme"
+            ]
+        },
+        {
+            "id": 7,
+            "question": "Underfitting nedir?",
+            "answer": "Underfitting, modelin ne eğitim ne de test verisini iyi öğrenememesidir.",
+            "keywords": [
+                "underfitting",
+                "yetersiz öğrenme",
+                "test verisi"
+            ]
+        },
+        {
+            "id": 8,
+            "question": "Doğruluk (accuracy) nedir?",
+            "answer": "Doğruluk, doğru tahmin edilen örneklerin toplam örneğe oranıdır.",
+            "keywords": [
+                "doğruluk",
+                "accuracy",
+                "performans"
+            ]
+        },
+        {
+            "id": 9,
+            "question": "F1 skoru nedir?",
+            "answer": "F1 skoru, precision ve recall’un harmonik ortalamasıdır.",
+            "keywords": [
+                "f1",
+                "precision",
+                "recall",
+                "performans"
+            ]
+        },
+        {
+            "id": 10,
+            "question": "Confusion matrix nedir?",
+            "answer": "Confusion matrix, modelin sınıflandırma performansını özetleyen tablodur.",
+            "keywords": [
+                "confusion matrix",
+                "karışıklık matrisi",
+                "sınıflandırma"
+            ]
+        },
+        {
+            "id": 11,
+            "question": "Gradient Descent nedir?",
+            "answer": "Gradient Descent, kayıp fonksiyonunu minimize etmek için kullanılan optimizasyon algoritmasıdır.",
+            "keywords": [
+                "gradient descent",
+                "optimizasyon",
+                "kayıp fonksiyonu"
+            ]
+        },
+        {
+            "id": 12,
+            "question": "Veri ön işleme nedir?",
+            "answer": "Veri ön işleme, ham verilerin analiz ve modelleme için temizlenmesi, düzenlenmesi ve dönüştürülmesi sürecidir.",
+            "keywords": [
+                "veri ön işleme",
+                "temizleme",
+                "veri hazırlama"
+            ]
+        },
+        {
+            "id": 13,
+            "question": "Normalizason nedir?",
+            "answer": "Normalizasyon, verilerin belirli bir aralığa (genellikle 0 ile 1 arasında) ölçeklendirilmesi işlemidir.",
+            "keywords": [
+                "normalizasyon",
+                "ölçekleme",
+                "veri dönüşümü"
+            ]
+        },
+        {
+            "id": 14,
+            "question": "Random Forest nedir?",
+            "answer": "Random Forest, birçok karar ağacının bir araya gelerek oluşturduğu topluluk modelidir.",
+            "keywords": [
+                "random forest",
+                "karar ağacı",
+                "ensemble",
+                "topluluk yöntemi"
+            ]
+        },
+        {
+            "id": 15,
+            "question": "Support Vector Machine (SVM) nedir?",
+            "answer": "SVM, verileri en iyi ayıran hiper düzlemi bulan sınıflandırma algoritmasıdır.",
+            "keywords": [
+                "svm",
+                "support vector machine",
+                "sınıflandırma",
+                "hiper düzlem"
+            ]
+        },
+        {
+            "id": 16,
+            "question": "PCA nedir?",
+            "answer": "PCA, verideki boyut sayısını azaltan bir boyut indirgeme tekniğidir.",
+            "keywords": [
+                "pca",
+                "boyut indirgeme",
+                "principal component analysis"
+            ]
+        },
+        {
+            "id": 17,
+            "question": "Cross-validation - Çapraz Doğrulama nedir?",
+            "answer": "Cross-validation, modelin farklı veri parçalarında test edilerek doğruluğunun ölçülmesidir.",
+            "keywords": [
+                "cross-validation",
+                "çapraz doğrulama",
+                "doğruluk",
+                "test bölme"
+            ]
+        },
+        {
+            "id": 18,
+            "question": "ROC eğrisi nedir?",
+            "answer": "ROC eğrisi, true positive rate ile false positive rate arasındaki ilişkiyi gösterir.",
+            "keywords": [
+                "roc eğrisi",
+                "roc curve",
+                "true positive",
+                "false positive"
+            ]
+        },
+        {
+            "id": 19,
+            "question": "Normalizasyon neden kullanılır",
+            "answer": "Normalizasyon, verilerin aynı ölçeğe getirilmesini sağlayarak makine öğrenmesi algoritmalarının daha verimli çalışmasını sağlar.",
+            "keywords": [
+                "normalizasyon",
+                "veri ölçekleme",
+                "veri hazırlama"
+            ]
+        },
+        {
+            "id": 20,
+            "question": "Makine öğrenmesinde kullanılan diller nelerdir?",
+            "answer": "Makine öğrenmesinde en çok Python, R ve Julia dilleri kullanılır.",
+            "keywords": [
+                "python",
+                "r",
+                "julia",
+                "programlama dili"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "question": "tensorflow nedir",
+            "answer": "Bu, API'den alınan yanıtın örnek içeriğidir."
+        },
+        {
+            "question": "pytorch nedir",
+            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
+        }
+    ]
+}
