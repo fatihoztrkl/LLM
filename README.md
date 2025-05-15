@@ -17,7 +17,7 @@ Bu proje, kullanıcıların makine öğrenmesiyle ilgili sorularını yanıtlaya
    ```bash
    git clone https://github.com/halilkorkudan/LLM.git
    cd LLM
-````
+    ```
 
 2. **Sanal Ortam Oluşturun (Opsiyonel):**
 
