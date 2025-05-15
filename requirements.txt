@@ -1,6 +1,7 @@
 fastapi
 uvicorn
+openai>=1.0.0
 chromadb
-sentence-transformers
+numpy
 scikit-learn
-pydantic
+python-dotenv
