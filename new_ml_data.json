@@ -5,12 +5,8 @@
             "answer": "Bu, API'den alınan yanıtın örnek içeriğidir."
         },
         {
-            "question": "pytorch nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "makine öğrenmesi",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
+            "question": "lightgbm nedir?",
+            "answer": "LightGBM (Light Gradient Boosting Machine) bir makine öğrenmesi algorit"
         }
     ]
 }
