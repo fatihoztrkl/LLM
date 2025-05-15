@@ -5,64 +5,8 @@
             "answer": "Bu, API'den alınan yanıtın örnek içeriğidir."
         },
         {
-            "question": "pytorch nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "makine öğrenmesi",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "lightgbm nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "lightgbm nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "lightgbm nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "id3",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "id3 algoritması nedir?",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "tensorflow nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "tensorflow nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "tenserflow nedir?",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "hava nasıl ?",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "tenserflow",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "tenserflow nedir?",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "tensorflow nedir",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
-        },
-        {
-            "question": "tensorflow",
-            "answer": "Bu soruya verilecek örnek bir API cevabıdır."
+            "question": "lightgbm nedir?",
+            "answer": "LightGBM (Light Gradient Boosting Machine) bir makine öğrenmesi algorit"
         }
     ]
 }
