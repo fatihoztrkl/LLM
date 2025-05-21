@@ -101,7 +101,7 @@ def query_openai_and_save(question):
             {"role": "system", "content": "Kullanıcının makine öğrenmesiyle ilgili sorusuna kısa ve açık şekilde cevap ver."},
             {"role": "user", "content": question}
         ],
-        max_tokens=0
+        max_tokens=20
     )
     answer = response.choices[0].message.content
     save_to_new_file(question, answer)
