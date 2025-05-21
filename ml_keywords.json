@@ -60,8 +60,8 @@
     "knn",
     "k nearest neighbor",
     "destek vektör makineleri",
-    "svm",
     "support vector machine",
+    "svm",
     "naive bayes",
     "bayes sınıflandırıcı",
     "bayesian",
@@ -215,3 +215,5 @@
     "notebook",
     "jupyter"
 ]
+
+

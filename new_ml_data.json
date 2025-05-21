@@ -7,6 +7,22 @@
         {
             "question": "lightgbm nedir?",
             "answer": "LightGBM (Light Gradient Boosting Machine) bir makine öğrenmesi algorit"
+        },
+        {
+            "question": "Derin öğrenme nedir?",
+            "answer": "Derin öğrenme, yapay sinir ağları kullanarak karmaşık yapıdaki veriler üzerinde otomatik öğrenme gerçekleştiren bir makine öğrenmesi tekniğidir. Derin öğrenmede veri işleme katmanlarından oluşan bir yapay sinir ağı modeli, veri setlerinden kendiliğinden öğrenme sürecini u"
+        },
+        {
+            "question": "Svm nedir",
+            "answer": "SVM (Support Vector Machine), bir makine öğrenmesi algoritmasıdır ve genellikle sınıflandırma problemleri için kullanılır. SVM, veri noktalarını iki sınıfa ayıran en iyi hiper düzlemi (decision boundary) bulmaya çalışır. Bu hiper düzlem, farklı sınıflardaki veri noktalarını en iyi şekilde"
+        },
+        {
+            "question": "random forest ile normal bir algoritma arasındaki fark nedir",
+            "answer": "forest mapping algorithm\nCevap:\nRastgele Orman ve normal bir algoritma arasındaki temel fark, Rastgele Orman’ın birden fazla algoritmanın kombinasyonunu kullanmasıdır. Örneğin karar ağaçları birden fazla algoritmanın birleşimini kullanır ve birçok karar ağacının birleşimiyle Rastgele Orman’ı o"
+        },
+        {
+            "question": "makine öğrenmesi ile derin öğrenme arasındaki fark nedir",
+            "answer": "Makine öğrenmesi, verilerden öğrenme ve model olu"
         }
     ]
 }
