@@ -8,10 +8,13 @@ from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import chromadb
+from openai import OpenAI  # Yeni OpenAI istemcisi
+from dotenv import load_dotenv
+load_dotenv()
 
-# Eğer OpenAI API kullanacaksan açıkla:
-#import openai
-#openai.api_key = "YOUR_OPENAI_API_KEY"
+
+# --- OpenAI istemcisi ---
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # --- Model ve Temizlik Fonksiyonları ---
 
@@ -24,7 +27,7 @@ def clean_text(text: str) -> str:
 
 turkish_stopwords = set([
     "nedir", "ne", "demek", "açıkla", "örnek", "ver", "ile", "ilgili", "açıklayınız",
-    "açıklayın", "kısaca", "tanımla", "tanımı", "anlat", "nedeni", "amaç", "nasıl", "neden","verir"
+    "açıklayın", "kısaca", "tanımla", "tanımı", "anlat", "nedeni", "amaç", "nasıl", "neden", "verir"
 ])
 
 def clean_question(text: str) -> str:
@@ -72,20 +75,16 @@ def is_ml_related(question: str, threshold=0.7) -> bool:
     question_embedding = model.encode([cleaned])[0]
     similarities = cosine_similarity([question_embedding], keyword_embeddings)[0]
     max_sim = np.max(similarities)
-
-    if max_sim >= threshold:
-        return True
-    else:
-        return False
+    return max_sim >= threshold
 
 # --- ChromaDB ve Soru-Cevap Verisi ---
 
-client = chromadb.Client()
+client_chroma = chromadb.Client()
 
 try:
-    collection = client.create_collection("machine_learning_faq")
+    collection = client_chroma.create_collection("machine_learning_faq")
 except Exception:
-    collection = client.get_collection("machine_learning_faq")
+    collection = client_chroma.get_collection("machine_learning_faq")
 
 with open("machine_learning_faq.json", "r", encoding="utf-8") as f:
     df = json.load(f)
@@ -105,22 +104,17 @@ for i, embedding in enumerate(embeddings):
 # --- OpenAI API Çağrısı ---
 
 def ask_openai_api(question: str) -> str:
-    # API key ve openai kütüphanesini aktif et
-    # Eğer OpenAI kullanılmayacaksa burayı kendine göre düzenle
     try:
-        import openai
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-        response = openai.ChatCompletion.create(
-            model="gpt-4o-mini",
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "Sen makine öğrenmesi alanında uzman bir asistansın."},
+                {"role": "system", "content": "Sen makine öğrenmesi alanında uzman bir asistansın. Sadece makine öğrenmesiyle ilgili sorulara kısa ve öz cevap ver; eğer soru bu alanla ilgili değilse, vereceğin cevap 'Bu soru makine öğrenmesi ile ilgili değil. Yanıt verilemiyor.' olsun."},
                 {"role": "user", "content": question}
             ],
-            max_tokens=150,
+            max_tokens=300,
             temperature=0.7,
         )
-        answer = response.choices[0].message.content.strip()
-        return answer
+        return response.choices[0].message.content.strip()
     except Exception as e:
         return f"API cevabı alınamadı: {e}"
 
@@ -137,7 +131,7 @@ def save_to_new_file(question: str, answer: str, filename="new_ml_data.json"):
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
-# --- API Modeli ---
+# --- API Modelleri ---
 
 class QuestionRequest(BaseModel):
     question: str
@@ -152,17 +146,19 @@ class QuizRequest(BaseModel):
 class QuizResponse(BaseModel):
     quiz_questions: list[str]
 
+class FeedbackRequest(BaseModel):
+    approved: bool
+    question: str
+    last_answer: str
+
 # --- FastAPI Uygulaması ---
 
 app = FastAPI()
-
 asked_questions_global = []
 
 @app.post("/ask", response_model=AnswerResponse)
 def ask_question(req: QuestionRequest):
     user_question = req.question.strip()
-
-    # Boş soruysa hata
     if not user_question:
         return AnswerResponse(answer="Soru boş olamaz.", from_source="none")
 
@@ -180,49 +176,34 @@ def ask_question(req: QuestionRequest):
         include=["embeddings", "documents", "metadatas"]
     )
 
-    answer_from = None
+    answer_from = "api"
     answer_text = ""
 
     if results['documents'] and results['embeddings'] and len(results['embeddings'][0]) > 0:
         top_embedding = np.array(results['embeddings'][0][0])
         similarity = cosine_similarity([question_vector], [top_embedding])[0][0]
 
-        threshold = 0.7
-        if similarity >= threshold:
+        if similarity >= 0.7:
             answer_from = "db"
             answer_text = results['documents'][0][0]
-        else:
-            answer_from = "api"
-    else:
-        answer_from = "api"
 
     if answer_from == "api":
         answer_text = ask_openai_api(user_question)
-
-    # Eğer istersen otomatik kaydetme:
-    # save_to_new_file(user_question, answer_text)
 
     return AnswerResponse(answer=answer_text, from_source=answer_from)
 
 @app.post("/quiz", response_model=QuizResponse)
 def start_quiz(req: QuizRequest):
-    # Kullanıcı tarafından sorulmuş sorulardan quiz oluşturur
-    quiz_questions = req.questions
-    return QuizResponse(quiz_questions=quiz_questions)
+    return QuizResponse(quiz_questions=req.questions)
 
 @app.post("/feedback")
-def feedback(approved: bool, question: str, last_answer: str):
-    # Kullanıcının cevaptan memnuniyetini bildirir
-    if approved:
+def feedback(req: FeedbackRequest):
+    if req.approved:
         return {"message": "Teşekkürler, cevaptan memnun kaldığınız için sevindik."}
     else:
-        # Alternatif cevap için OpenAI API çağrısı
-        alt_answer = ask_openai_api(question + " Lütfen alternatif cevabı detaylandır.")
-        # Alternatif cevabı kaydetmek istersen yapabilirsin
-        # save_to_new_file(question, alt_answer)
-        return {"alternative_answer": alt_answer}
+        alt_answer = ask_openai_api(req.question + "Sen makine öğrenmesi alanında uzman bir asistansın. Kullanıcının sorusuna en iyi cevabı kısa ve öz bir şekilde cevapla.")
+        return {"answer": alt_answer}
 
 @app.get("/asked-questions")
 def get_asked_questions():
-    # Sorduğun soruları görmek için (isteğe bağlı)
     return {"asked_questions": asked_questions_global}
