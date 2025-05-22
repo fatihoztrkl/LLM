@@ -5,3 +5,5 @@ chromadb
 numpy
 scikit-learn
 python-dotenv
+sentence-transformers
+
